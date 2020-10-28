@@ -2,7 +2,7 @@ import boto3
 import statistics
 import time
 
-print("hello world ! ")
+
 # Get the service resource
 sqs1 = boto3.resource('sqs')
 
@@ -40,5 +40,3 @@ while(1):
 
     except:
         print("Exception")
-#    queueRequest = boto3.client('sqs').purge_queue(QueueUrl='https://sqs.us-east-1.amazonaws.com/580530755374/requestQueue4')
-#    queue =  boto3.client('sqs').purge_queue(QueueUrl='https://sqs.us-east-1.amazonaws.com/580530755374/responseQueue4')
