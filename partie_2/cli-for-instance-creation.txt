@@ -1,0 +1,54 @@
+Microsoft Windows [Version 10.0.19041.572]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\USER>aws --version
+aws-cli/2.0.59 Python/3.7.7 Windows/10 exe/AMD64
+
+C:\Users\USER>aws configure
+AWS Access Key ID [****************U4S4]: ASIAYOKSUK4XBIRNKSJU
+AWS Secret Access Key [****************x2tq]: Y1FJDkpHlsulo3JYbj+8mpz1tP/yUT7G/niZsLdn
+Default region name [us-east-1]:
+Default output format [text]:
+
+C:\Users\USER>aws ec2 create-security-group --group-name securitygroup1 --description "test"
+sg-0422abe3e1362433b
+
+C:\Users\USER>aws ec2 authorize-security-group-ingress --group-name securitygroup1 --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+C:\Users\USER>aws ec2 create-key-pair --key-name keylab3 --query "KeyMaterial" --output text > test-lab3.pem
+
+C:\Users\USER>aws ec2 run-instances --image-id ami-0947d2ba12ee1ff75 --security-group-ids sg-0422abe3e1362433b --instance-type t2.micro --key-name keylab3
+580530755374    r-095ee9dcd0dbe3259
+INSTANCES       0       x86_64  9ca15cfa-5edf-442b-b89f-63baa5346835    False   True    xen     ami-0947d2ba12ee1ff75   i-0dc96acd64bc0bf48     t2.micro        keylab3 2020-10-24T10:08:51+00:00       ip-172-31-62-174.ec2.internal   172.31.62.174           /dev/xvda       ebs     True            subnet-1538c924 hvm     vpc-921ce2ef
+CAPACITYRESERVATIONSPECIFICATION        open
+CPUOPTIONS      1       1
+METADATAOPTIONS enabled 1       optional        pending
+MONITORING      disabled
+NETWORKINTERFACES               interface       06:a1:08:e3:ab:c3       eni-0faba62a7995bd55a   580530755374    ip-172-31-62-174.ec2.internal   172.31.62.174   True    in-use  subnet-1538c924 vpc-921ce2ef
+ATTACHMENT      2020-10-24T10:08:51+00:00       eni-attach-02515976278b40617    True    0       attaching
+GROUPS  sg-0422abe3e1362433b    securitygroup1
+PRIVATEIPADDRESSES      True    ip-172-31-62-174.ec2.internal   172.31.62.174
+PLACEMENT       us-east-1e              default
+SECURITYGROUPS  sg-0422abe3e1362433b    securitygroup1
+STATE   0       pending
+STATEREASON     pending pending
+
+C:\Users\USER>aws ec2 describe-instances
+RESERVATIONS    580530755374    r-095ee9dcd0dbe3259
+INSTANCES       0       x86_64  9ca15cfa-5edf-442b-b89f-63baa5346835    False   True    xen     ami-0947d2ba12ee1ff75   i-0dc96acd64bc0bf48     t2.micro        keylab3 2020-10-24T10:08:51+00:00       ip-172-31-62-174.ec2.internal   172.31.62.174   ec2-52-91-127-85.compute-1.amazonaws.com        52.91.127.85    /dev/xvda       ebs     True            subnet-1538c924 hvm     vpc-921ce2ef
+BLOCKDEVICEMAPPINGS     /dev/xvda
+EBS     2020-10-24T10:08:52+00:00       True    attached        vol-072de9b49df0ed225
+CAPACITYRESERVATIONSPECIFICATION        open
+CPUOPTIONS      1       1
+HIBERNATIONOPTIONS      False
+METADATAOPTIONS enabled 1       optional        applied
+MONITORING      disabled
+NETWORKINTERFACES               interface       06:a1:08:e3:ab:c3       eni-0faba62a7995bd55a   580530755374    ip-172-31-62-174.ec2.internal   172.31.62.174   True    in-use  subnet-1538c924 vpc-921ce2ef
+ASSOCIATION     amazon  ec2-52-91-127-85.compute-1.amazonaws.com        52.91.127.85
+ATTACHMENT      2020-10-24T10:08:51+00:00       eni-attach-02515976278b40617    True    0       attached
+GROUPS  sg-0422abe3e1362433b    securitygroup1
+PRIVATEIPADDRESSES      True    ip-172-31-62-174.ec2.internal   172.31.62.174
+ASSOCIATION     amazon  ec2-52-91-127-85.compute-1.amazonaws.com        52.91.127.85
+PLACEMENT       us-east-1e              default
+SECURITYGROUPS  sg-0422abe3e1362433b    securitygroup1
+STATE   16      running
