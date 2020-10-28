@@ -1,7 +1,7 @@
 import boto3
 import time
 
-print("hello world ! ")
+
 # Get the service resource
 sqs = boto3.resource('sqs')
 
